@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Donors – BloodConnect</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="brand-logo">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+                <span>Blood<span class="accent">Connect</span></span>
+            </a>
+
+            <nav>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="find-donors.html" class="active">Find Donors</a></li>
+                    <li><a href="request-blood.html">Request Blood</a></li>
+                    <li><a href="index.html#how-it-works">How It Works</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions" id="nav-actions">
+                <a href="login.html" class="btn btn-secondary btn-sm">Login</a>
+                <a href="register.html?type=donor" class="btn btn-primary btn-sm">Become a Donor</a>
+            </div>
+
+            <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Toggle Navigation">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Page Header & Filter Form -->
+    <main class="section" style="padding-top: 2.5rem; flex: 1;">
+        <div class="container">
+            <div style="margin-bottom: 2rem;">
+                <h1 style="font-size: 2rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.5rem;">Find Potential Blood Donors</h1>
+                <p style="color: var(--text-secondary); max-width: 650px;">
+                    Search verified voluntary blood donors by blood type and regional location. Contact details are secured with privacy controls.
+                </p>
+            </div>
+
+            <!-- Search Filter Bar Card -->
+            <div class="card" style="margin-bottom: 2.5rem; box-shadow: var(--shadow-md);">
+                <div class="card-body" style="padding: 1.75rem;">
+                    <form id="donor-search-form">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 1rem; align-items: flex-end;">
+                            <div class="form-group" style="margin: 0;">
+                                <label class="form-label" for="search-blood-group">Blood Group</label>
+                                <select id="search-blood-group" class="form-select">
+                                    <option value="ALL">All Groups</option>
+                                    <option value="A+">A+ (A Positive)</option>
+                                    <option value="A-">A- (A Negative)</option>
+                                    <option value="B+">B+ (B Positive)</option>
+                                    <option value="B-">B- (B Negative)</option>
+                                    <option value="AB+">AB+ (AB Positive)</option>
+                                    <option value="AB-">AB- (AB Negative)</option>
+                                    <option value="O+">O+ (O Positive)</option>
+                                    <option value="O-">O- (O Negative)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group" style="margin: 0;">
+                                <label class="form-label" for="search-city">City</label>
+                                <input type="text" id="search-city" class="form-control" placeholder="e.g. Mumbai" />
+                            </div>
+
+                            <div class="form-group" style="margin: 0;">
+                                <label class="form-label" for="search-state">State</label>
+                                <input type="text" id="search-state" class="form-control" placeholder="e.g. Maharashtra" />
+                            </div>
+
+                            <div class="form-group" style="margin: 0;">
+                                <label class="form-label" for="search-pincode">PIN Code</label>
+                                <input type="text" id="search-pincode" class="form-control" placeholder="e.g. 400050" maxlength="6" />
+                            </div>
+
+                            <div class="form-group" style="margin: 0;">
+                                <label class="form-label" for="search-availability">Availability</label>
+                                <select id="search-availability" class="form-select">
+                                    <option value="ALL">All Donors</option>
+                                    <option value="AVAILABLE" selected>Available Now</option>
+                                    <option value="UNAVAILABLE">Unavailable</option>
+                                </select>
+                            </div>
+
+                            <div style="display: flex; gap: 0.5rem;">
+                                <button type="submit" class="btn btn-primary" style="flex: 1;">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                                    Search
+                                </button>
+                                <button type="button" id="reset-search-btn" class="btn btn-secondary" title="Reset Filters">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Search Results Header -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                <div style="font-weight: 700; color: var(--text-primary); font-size: 1.125rem;" id="results-count">
+                    Searching donors...
+                </div>
+                <div style="font-size: 0.8125rem; color: var(--text-secondary);">
+                    Sorted by Availability and Recent Activity
+                </div>
+            </div>
+
+            <!-- Donor Cards Results Grid -->
+            <div id="donor-results-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+                <!-- Dynamically populated by donor.js -->
+            </div>
+
+            <!-- Medical Disclaimer Notice -->
+            <div class="disclaimer-banner">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                <div class="disclaimer-content">
+                    <h4>Important Donor Eligibility &amp; Compatibility Notice</h4>
+                    <p>BloodConnect connects requesters with voluntary potential donors based on self-reported blood group information. This application does not verify or certify medical compatibility or donor fitness. Official compatibility testing, infectious disease screening, and donor eligibility checks must be conducted by qualified medical staff at certified blood banks.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-bottom">
+            <div>&copy; 2026 BloodConnect. All rights reserved. Connecting voluntary blood donors with communities in need.</div>
+            <div><a href="index.html" style="color:#94A3B8; text-decoration:none;">Back to Home</a></div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/donor.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            DonorApp.initSearch();
+        });
+    </script>
+</body>
+</html>
+

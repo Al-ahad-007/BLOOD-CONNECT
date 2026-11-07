@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BloodConnect – A Web-Based Blood Donor & Emergency Finder System</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body>
+
+    <!-- Header / Navigation Bar -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="brand-logo">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+                <span>Blood<span class="accent">Connect</span></span>
+            </a>
+
+            <nav>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="find-donors.html">Find Donors</a></li>
+                    <li><a href="request-blood.html">Request Blood</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#about-us">About Us</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions" id="nav-actions">
+                <a href="login.html" class="btn btn-secondary btn-sm">Login</a>
+                <a href="register.html?type=donor" class="btn btn-primary btn-sm">Become a Donor</a>
+            </div>
+
+            <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Toggle Navigation">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
+                    <span>Connecting Blood Donors With Those In Need</span>
+                </div>
+                <h1 class="hero-title">
+                    Every Drop Counts.<br>
+                    <span class="highlight">Every Connection Saves.</span>
+                </h1>
+                <p class="hero-description">
+                    Connecting voluntary blood donors directly with people in need. Find verified potential donors, raise emergency hospital blood requests, and help make blood donation accessible when every minute matters.
+                </p>
+                <div class="hero-actions">
+                    <a href="find-donors.html" class="btn btn-primary btn-lg">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        Find Blood Donors
+                    </a>
+                    <a href="register.html?type=donor" class="btn btn-secondary btn-lg">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><line x1="19" y1="8" x2="19" y2="14"></line><line x1="22" y1="11" x2="16" y2="11"></line></svg>
+                        Become a Donor
+                    </a>
+                </div>
+
+                <div class="hero-trust-bar">
+                    <div class="hero-trust-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <span>Verified Donors</span>
+                    </div>
+                    <div class="hero-trust-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <span>Real-Time Availability</span>
+                    </div>
+                    <div class="hero-trust-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <span>Zero Commercial Middlemen</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dynamic Emergency Feed from Database -->
+            <div class="hero-illustration">
+                <div class="hero-visual-card">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.85rem;">
+                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                            <div style="width: 36px; height: 36px; border-radius: var(--radius-full); background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 style="font-size: 0.9375rem; font-weight: 700; margin: 0;">Emergency Requests</h4>
+                                <span style="font-size: 0.75rem; color: var(--text-secondary);">Direct Hospital Outreach</span>
+                            </div>
+                        </div>
+                        <span class="badge badge-critical" id="hero-feed-badge">LIVE FEED</span>
+                    </div>
+
+                    <div id="hero-emergency-feed">
+                        <div style="text-align: center; padding: 1.5rem 0; color: var(--text-secondary);">
+                            <div class="spinner" style="width: 20px; height: 20px;"></div>
+                            <p style="font-size: 0.8125rem; margin-top: 0.5rem;">Checking verified emergency requirements...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platform Live Statistics (Loaded dynamically from Java Backend) -->
+    <section class="stats-section">
+        <div class="container stats-grid">
+            <div class="stat-item">
+                <div class="stat-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-number" id="stat-donors-count">--</div>
+                    <div class="stat-label">Registered Donors</div>
+                </div>
+            </div>
+
+            <div class="stat-item">
+                <div class="stat-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-number" id="stat-available-donors">--</div>
+                    <div class="stat-label">Available Donors</div>
+                </div>
+            </div>
+
+            <div class="stat-item">
+                <div class="stat-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-number" id="stat-active-requests">--</div>
+                    <div class="stat-label">Active Requests</div>
+                </div>
+            </div>
+
+            <div class="stat-item">
+                <div class="stat-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-number" id="stat-fulfilled-requests">--</div>
+                    <div class="stat-label">Requests Fulfilled</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Supported Blood Groups Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Compatibility &amp; Access</span>
+                <h2 class="section-title">Supported Blood Groups</h2>
+                <p class="section-subtitle">Click any blood type below to quickly find active, verified voluntary donors in your state or city.</p>
+            </div>
+
+            <div class="blood-groups-grid">
+                <a href="find-donors.html?bloodGroup=A%2B" class="blood-group-badge">
+                    <span class="bg-type">A+</span>
+                    <span class="bg-label">A Positive</span>
+                </a>
+                <a href="find-donors.html?bloodGroup=A-" class="blood-group-badge">
+                    <span class="bg-type">A-</span>
+                    <span class="bg-label">A Negative</span>
+                </a>
+                <a href="find-donors.html?bloodGroup=B%2B" class="blood-group-badge">
+                    <span class="bg-type">B+</span>
+                    <span class="bg-label">B Positive</span>
+                </a>
+                <a href="find-donors.html?bloodGroup=B-" class="blood-group-badge">
+                    <span class="bg-type">B-</span>
+                    <span class="bg-label">B Negative</span>
+                </a>
+                <a href="find-donors.html?bloodGroup=AB%2B" class="blood-group-badge">
+                    <span class="bg-type">AB+</span>
+                    <span class="bg-label">AB Positive</span>
+                </a>
+                <a href="find-donors.html?bloodGroup=AB-" class="blood-group-badge">
+                    <span class="bg-type">AB-</span>
+                    <span class="bg-label">AB Negative</span>
+                </a>
+                <a href="find-donors.html?bloodGroup=O%2B" class="blood-group-badge">
+                    <span class="bg-type">O+</span>
+                    <span class="bg-label">O Positive</span>
+                </a>
+                <a href="find-donors.html?bloodGroup=O-" class="blood-group-badge">
+                    <span class="bg-type">O-</span>
+                    <span class="bg-label">O Negative</span>
+                </a>
+            </div>
+
+            <!-- Medical Disclaimer -->
+            <div class="disclaimer-banner">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                    <line x1="12" y1="9" x2="12" y2="13"></line>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+                <div class="disclaimer-content">
+                    <h4>Important Medical &amp; Compatibility Notice</h4>
+                    <p>BloodConnect is a donor discovery and communication platform, not a medical compatibility or blood bank management system. Search results do not confirm donor eligibility or compatibility. Final donor eligibility and cross-matching must always be conducted and verified by licensed healthcare professionals and authorized blood banks.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="section" id="how-it-works" style="background-color: #FFFFFF; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Seamless Process</span>
+                <h2 class="section-title">How BloodConnect Works</h2>
+                <p class="section-subtitle">A transparent 4-step workflow connecting patients, donors, and healthcare centers safely.</p>
+            </div>
+
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <div class="step-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><line x1="19" y1="8" x2="19" y2="14"></line><line x1="22" y1="11" x2="16" y2="11"></line></svg>
+                    </div>
+                    <h3 class="step-title">Register as Donor</h3>
+                    <p class="step-desc">Create your profile with blood group and location. Control your real-time availability toggle from your personalized dashboard.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <div class="step-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    </div>
+                    <h3 class="step-title">Search for Donors</h3>
+                    <p class="step-desc">Filter available donors by blood type, city, state, or PIN code with complete privacy protections for personal contact info.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <div class="step-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                    </div>
+                    <h3 class="step-title">Submit Blood Request</h3>
+                    <p class="step-desc">In emergencies, broadcast a request specifying the hospital, required units, and urgency level (Normal, Urgent, Critical).</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">04</div>
+                    <div class="step-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    </div>
+                    <h3 class="step-title">Connect &amp; Coordinate</h3>
+                    <p class="step-desc">Matching donors respond directly to the request. Coordinate hospital arrival and track request status until fulfilled.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Banner -->
+    <section class="section" id="about-us">
+        <div class="container">
+            <div class="cta-banner">
+                <h2>Join the BloodConnect Lifeline Today</h2>
+                <p>A single blood donation can save up to three lives. Register as a potential donor today and be someone's emergency hero when it counts most.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="register.html?type=donor" class="btn btn-secondary btn-lg" style="background: white; color: var(--primary); font-weight: 700;">
+                        Register as a Blood Donor
+                    </a>
+                    <a href="request-blood.html" class="btn btn-outline btn-lg" style="border-color: white; color: white;">
+                        Post an Emergency Request
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="brand-logo" style="color: white;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                        <span>Blood<span class="accent">Connect</span></span>
+                    </a>
+                    <p class="footer-desc">
+                        A web-based blood donor and emergency finder platform designed to bridge the communication gap between voluntary blood donors and patients in urgent moments.
+                    </p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="find-donors.html">Find Donors</a></li>
+                        <li><a href="request-blood.html">Emergency Request</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Account</h4>
+                    <ul class="footer-links">
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="register.html?type=donor">Register as Donor</a></li>
+                        <li><a href="register.html?type=requester">Register as Requester</a></li>
+                        <li><a href="donor-dashboard.html">Donor Dashboard</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Emergency Help</h4>
+                    <p style="font-size: 0.875rem; color: #94A3B8; margin-bottom: 0.75rem;">
+                        In case of life-threatening emergencies, call official national medical services immediately:
+                    </p>
+                    <div style="font-size: 1.25rem; font-weight: 700; color: #EF4444; margin-bottom: 0.5rem;">
+                        National Emergency: 108 / 112
+                    </div>
+                    <div style="font-size: 0.8125rem; color: #64748B;">Central Red Cross Blood Helpline: 1910</div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div>&copy; 2026 BloodConnect. All rights reserved. Connecting voluntary blood donors with communities in need.</div>
+                <div style="display: flex; gap: 1.5rem;">
+                    <a href="#about-us" style="color: #94A3B8; text-decoration: none;">Privacy Policy</a>
+                    <a href="#about-us" style="color: #94A3B8; text-decoration: none;">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Load live statistics and verified emergency feed from backend
+        document.addEventListener("DOMContentLoaded", async function () {
+            // Load platform statistics
+            try {
+                const resp = await fetch(`${BloodConnect.contextPath}/api/stats/public`);
+                const res = await resp.json();
+                if (resp.ok && res.success) {
+                    const s = res.data;
+                    document.getElementById("stat-donors-count").innerText = s.registeredDonors;
+                    document.getElementById("stat-available-donors").innerText = s.availableDonors;
+                    document.getElementById("stat-active-requests").innerText = s.activeRequests;
+                    document.getElementById("stat-fulfilled-requests").innerText = s.requestsFulfilled;
+                }
+            } catch (e) {
+                console.error("Failed to load platform stats:", e);
+            }
+
+            // Load verified emergency requests for hero feed
+            const feedContainer = document.getElementById("hero-emergency-feed");
+            if (feedContainer) {
+                try {
+                    const resp = await fetch(`${BloodConnect.contextPath}/api/requests/recent`);
+                    const res = await resp.json();
+                    if (resp.ok && res.success && res.data && res.data.length > 0) {
+                        let html = "";
+                        res.data.slice(0, 2).forEach(item => {
+                            const urgencyBadge = item.urgency === 'CRITICAL' ? 'badge-critical'
+                                : item.urgency === 'URGENT' ? 'badge-urgent' : 'badge-normal';
+                            html += `
+                                <div style="background: var(--bg-main); border-radius: var(--radius-md); padding: 0.85rem; margin-bottom: 0.75rem; border: 1px solid var(--border-light);">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+                                        <span class="badge ${urgencyBadge}" style="font-size: 0.6875rem;">${item.urgency}</span>
+                                        <span class="donor-blood-badge" style="font-size: 0.8125rem; padding: 0.15rem 0.5rem;">${BloodConnect.escapeHtml(item.bloodGroup)} • ${item.unitsRequired} Unit(s)</span>
+                                    </div>
+                                    <div style="font-size: 0.875rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.2rem;">${BloodConnect.escapeHtml(item.hospitalName)}</div>
+                                    <div style="font-size: 0.75rem; color: var(--text-secondary);">${BloodConnect.escapeHtml(item.city)}, ${BloodConnect.escapeHtml(item.state)} • Needed by: ${item.requiredDate}</div>
+                                </div>
+                            `;
+                        });
+                        html += `
+                            <div style="text-align: center; margin-top: 0.5rem;">
+                                <a href="find-donors.html" class="btn btn-outline btn-sm btn-block" style="font-size: 0.8125rem;">View All Active Requirements</a>
+                            </div>
+                        `;
+                        feedContainer.innerHTML = html;
+                    } else {
+                        feedContainer.innerHTML = `
+                            <div style="text-align: center; padding: 1.5rem 0.5rem; color: var(--text-secondary);">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2" style="margin-bottom: 0.5rem;">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                                <div style="font-weight: 600; color: var(--text-primary); font-size: 0.875rem; margin-bottom: 0.25rem;">No active emergency requests at the moment.</div>
+                                <div style="font-size: 0.75rem;">All recent hospital requirements have been fulfilled or are in coordination.</div>
+                            </div>
+                        `;
+                    }
+                } catch (err) {
+                    feedContainer.innerHTML = `
+                        <div style="text-align: center; padding: 1.25rem 0.5rem; color: var(--text-secondary);">
+                            <div style="font-weight: 600; color: var(--text-primary); font-size: 0.875rem;">No active emergency requests at the moment.</div>
+                            <div style="font-size: 0.75rem;">Volunteer donors are standing by across registered regions.</div>
+                        </div>
+                    `;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+

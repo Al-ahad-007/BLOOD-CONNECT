@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Blood Request – BloodConnect</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body style="background-color: var(--bg-main);">
+
+    <!-- Header Navigation -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="brand-logo">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+                <span>Blood<span class="accent">Connect</span></span>
+            </a>
+
+            <nav>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="find-donors.html">Find Donors</a></li>
+                    <li><a href="request-blood.html" class="active">Request Blood</a></li>
+                    <li><a href="my-requests.html">Track Requests</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions" id="nav-actions">
+                <!-- Dynamic user menu -->
+            </div>
+
+            <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Toggle Navigation">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <main class="section" style="padding-top: 2rem;">
+        <div class="container" style="max-width: 760px;">
+            <div style="margin-bottom: 2rem; text-align: center;">
+                <span class="section-tag" style="color: var(--danger);">Emergency Broadcast</span>
+                <h1 style="font-size: 2rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.5rem;">Raise an Emergency Blood Request</h1>
+                <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
+                    Broadcast a blood requirement to verified voluntary donors in your hospital's region.
+                </p>
+            </div>
+
+            <!-- Critical Emergency Advisory -->
+            <div class="disclaimer-banner" style="background-color: #FEF2F2; border-color: #FCA5A5; margin-bottom: 2rem;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+                <div class="disclaimer-content">
+                    <h4 style="color: #991B1B;">Urgent Medical Advisory</h4>
+                    <p style="color: #7F1D1D;">
+                        BloodConnect facilitates voluntary community outreach and does not guarantee blood availability. If this is an immediate life-threatening emergency, please contact the hospital's licensed in-house blood bank, government blood banks, or call emergency medical services immediately.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card" style="box-shadow: var(--shadow-lg);">
+                <div class="card-body" style="padding: 2.5rem;">
+                    <form id="blood-request-form">
+                        <!-- SECTION 1: Patient Information -->
+                        <div class="form-section">
+                            <div class="form-section-title">
+                                <span class="form-section-badge">1</span>
+                                <span>Patient &amp; Blood Requirement</span>
+                            </div>
+                            <div class="form-section-desc">Specify the patient name, required blood group, units, and urgency level.</div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label" for="patientName">Patient Full Name <span class="required">*</span></label>
+                                    <input type="text" id="patientName" class="form-control" placeholder="e.g. Ramesh Kumar" required />
+                                    <div class="field-error" id="patientName-error"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="bloodGroup">Required Blood Group <span class="required">*</span></label>
+                                    <select id="bloodGroup" class="form-select" required>
+                                        <option value="">-- Select Blood Group --</option>
+                                        <option value="A+">A+ (A Positive)</option>
+                                        <option value="A-">A- (A Negative)</option>
+                                        <option value="B+">B+ (B Positive)</option>
+                                        <option value="B-">B- (B Negative)</option>
+                                        <option value="AB+">AB+ (AB Positive)</option>
+                                        <option value="AB-">AB- (AB Negative)</option>
+                                        <option value="O+">O+ (O Positive)</option>
+                                        <option value="O-">O- (O Negative)</option>
+                                    </select>
+                                    <div class="field-error" id="bloodGroup-error"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label" for="unitsRequired">Units (Bags) Required <span class="required">*</span></label>
+                                    <input type="number" id="unitsRequired" class="form-control" min="1" max="20" value="1" required />
+                                    <div class="field-error" id="unitsRequired-error"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="urgency">Urgency Level <span class="required">*</span></label>
+                                    <select id="urgency" class="form-select" required>
+                                        <option value="NORMAL">Normal (Within 2-5 days)</option>
+                                        <option value="URGENT" selected>Urgent (Within 24-48 hours)</option>
+                                        <option value="CRITICAL">Critical (Immediate / Today)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SECTION 2: Hospital Information -->
+                        <div class="form-section">
+                            <div class="form-section-title">
+                                <span class="form-section-badge">2</span>
+                                <span>Hospital Information &amp; Location</span>
+                            </div>
+                            <div class="form-section-desc">Provide hospital and regional details so nearby donors can easily reach.</div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="hospitalName">Hospital / Medical Center Name <span class="required">*</span></label>
+                                <input type="text" id="hospitalName" class="form-control" placeholder="e.g. Lilavati Hospital & Research Centre" required />
+                                <div class="field-error" id="hospitalName-error"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="hospitalAddress">Hospital Address / Ward / Room <span class="required">*</span></label>
+                                <input type="text" id="hospitalAddress" class="form-control" placeholder="Floor, Ward number, Department, or Street" required />
+                                <div class="field-error" id="hospitalAddress-error"></div>
+                            </div>
+
+                            <div class="form-row-3">
+                                <div class="form-group">
+                                    <label class="form-label" for="city">City <span class="required">*</span></label>
+                                    <input type="text" id="city" class="form-control" placeholder="e.g. Mumbai" required />
+                                    <div class="field-error" id="city-error"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="state">State <span class="required">*</span></label>
+                                    <input type="text" id="state" class="form-control" placeholder="e.g. Maharashtra" required />
+                                    <div class="field-error" id="state-error"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="pincode">PIN Code <span class="required">*</span></label>
+                                    <input type="text" id="pincode" class="form-control" placeholder="e.g. 400050" maxlength="6" required />
+                                    <div class="field-error" id="pincode-error"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SECTION 3: Contact & Communication -->
+                        <div class="form-section">
+                            <div class="form-section-title">
+                                <span class="form-section-badge">3</span>
+                                <span>Emergency Contact Coordination</span>
+                            </div>
+                            <div class="form-section-desc">Direct emergency contact details for voluntary donors to connect immediately.</div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label" for="contactPerson">Emergency Contact Person <span class="required">*</span></label>
+                                    <input type="text" id="contactPerson" class="form-control" placeholder="Family member or doctor name" required />
+                                    <div class="field-error" id="contactPerson-error"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="contactPhone">Contact Phone Number <span class="required">*</span></label>
+                                    <input type="tel" id="contactPhone" class="form-control" placeholder="10-digit number" maxlength="10" required />
+                                    <div class="field-error" id="contactPhone-error"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SECTION 4: Request Details -->
+                        <div class="form-section">
+                            <div class="form-section-title">
+                                <span class="form-section-badge">4</span>
+                                <span>Request Timeline &amp; Notes</span>
+                            </div>
+                            <div class="form-section-desc">Date requirement and clinical context for matching voluntary donors.</div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="requiredDate">Date Blood is Needed <span class="required">*</span></label>
+                                <input type="date" id="requiredDate" class="form-control" required />
+                                <div class="field-error" id="requiredDate-error"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="description">Additional Clinical Notes / Reason (Optional)</label>
+                                <textarea id="description" class="form-textarea" placeholder="E.g., Scheduled surgery, trauma recovery, dialysis, or specific blood bank instructions"></textarea>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top: 1.5rem;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                            Broadcast Emergency Blood Request
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-bottom">
+            <div>&copy; 2026 BloodConnect. All rights reserved. Emergency Finder System.</div>
+            <div><a href="index.html" style="color:#94A3B8; text-decoration:none;">Back to Home</a></div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/requests.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            RequestsApp.initCreate();
+        });
+    </script>
+</body>
+</html>
+

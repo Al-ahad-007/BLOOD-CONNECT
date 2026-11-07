@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register – BloodConnect</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body style="background-color: #F1F5F9; min-height: 100vh; display: flex; flex-direction: column;">
+
+    <!-- Minimal Header -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="brand-logo">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+                <span>Blood<span class="accent">Connect</span></span>
+            </a>
+            <div class="nav-actions">
+                <span style="font-size: 0.875rem; color: var(--text-secondary);">Already registered?</span>
+                <a href="login.html" class="btn btn-outline btn-sm">Sign In</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Registration Form -->
+    <main style="flex: 1; padding: 2.5rem 1rem;">
+        <div style="width: 100%; max-width: 680px; margin: 0 auto;">
+            <div class="card" style="box-shadow: var(--shadow-xl); border-radius: var(--radius-lg);">
+                <div class="card-body" style="padding: 2.5rem;">
+                    <div style="text-align: center; margin-bottom: 2rem;">
+                        <h2 style="font-size: 1.75rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.35rem;">Join BloodConnect</h2>
+                        <p style="font-size: 0.9375rem; color: var(--text-secondary);">Register to donate blood or request emergency units for patients.</p>
+                    </div>
+
+                    <form id="register-form">
+                        <!-- Account Type Selector -->
+                        <div class="form-group">
+                            <label class="form-label">I want to join as: <span class="required">*</span></label>
+                            <div class="choice-cards">
+                                <label class="choice-card selected" data-for="donor">
+                                    <input type="radio" name="role" id="role-donor" value="DONOR" checked>
+                                    <div class="choice-card-icon">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                                    </div>
+                                    <div>
+                                        <div class="choice-card-title">Blood Donor</div>
+                                        <div class="choice-card-desc">Willing to donate blood and help patients</div>
+                                    </div>
+                                </label>
+
+                                <label class="choice-card" data-for="requester">
+                                    <input type="radio" name="role" id="role-requester" value="REQUESTER">
+                                    <div class="choice-card-icon">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                                    </div>
+                                    <div>
+                                        <div class="choice-card-title">Requester</div>
+                                        <div class="choice-card-desc">Find donors and raise blood requests</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Personal Information -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="fullName">Full Name <span class="required">*</span></label>
+                                <input type="text" id="fullName" class="form-control" placeholder="Dr. / Mr. / Ms. Full Name" required />
+                                <div class="field-error" id="fullName-error"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="email">Email Address <span class="required">*</span></label>
+                                <input type="email" id="email" class="form-control" placeholder="name@example.com" required />
+                                <div class="field-error" id="email-error"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="phone">10-Digit Mobile Number <span class="required">*</span></label>
+                                <input type="tel" id="phone" class="form-control" placeholder="9820011223" maxlength="10" required />
+                                <div class="field-error" id="phone-error"></div>
+                            </div>
+
+                            <!-- Donor Specific Blood Group Field -->
+                            <div class="form-group" id="donor-bg-container">
+                                <div id="donor-fields">
+                                    <label class="form-label" for="bloodGroup">Blood Group <span class="required">*</span></label>
+                                    <select id="bloodGroup" class="form-select">
+                                        <option value="">-- Select Blood Group --</option>
+                                        <option value="A+">A+ (A Positive)</option>
+                                        <option value="A-">A- (A Negative)</option>
+                                        <option value="B+">B+ (B Positive)</option>
+                                        <option value="B-">B- (B Negative)</option>
+                                        <option value="AB+">AB+ (AB Positive)</option>
+                                        <option value="AB-">AB- (AB Negative)</option>
+                                        <option value="O+">O+ (O Positive)</option>
+                                        <option value="O-">O- (O Negative)</option>
+                                    </select>
+                                    <div class="field-error" id="bloodGroup-error"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Passwords -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="password">Create Password <span class="required">*</span></label>
+                                <div class="input-password-wrapper">
+                                    <input type="password" id="password" class="form-control" placeholder="Min. 6 characters" required autocomplete="new-password" />
+                                    <button type="button" class="toggle-pwd" data-target="password" title="Show/Hide Password" aria-label="Toggle password visibility">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                    </button>
+                                </div>
+                                <div class="field-error" id="password-error"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="confirmPassword">Confirm Password <span class="required">*</span></label>
+                                <div class="input-password-wrapper">
+                                    <input type="password" id="confirmPassword" class="form-control" placeholder="Re-enter password" required autocomplete="new-password" />
+                                    <button type="button" class="toggle-pwd" data-target="confirmPassword" title="Show/Hide Password" aria-label="Toggle password visibility">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                    </button>
+                                </div>
+                                <div class="field-error" id="confirmPassword-error"></div>
+                            </div>
+                        </div>
+
+                        <!-- Location Information -->
+                        <div class="form-row-3">
+                            <div class="form-group">
+                                <label class="form-label" for="city">City <span class="required">*</span></label>
+                                <input type="text" id="city" class="form-control" placeholder="Mumbai" required />
+                                <div class="field-error" id="city-error"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="state">State <span class="required">*</span></label>
+                                <input type="text" id="state" class="form-control" placeholder="Maharashtra" required />
+                                <div class="field-error" id="state-error"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="pincode">PIN Code <span class="required">*</span></label>
+                                <input type="text" id="pincode" class="form-control" placeholder="400050" maxlength="6" required />
+                                <div class="field-error" id="pincode-error"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="address">Address / Area (Optional)</label>
+                            <input type="text" id="address" class="form-control" placeholder="Street, locality, or landmark" />
+                        </div>
+
+                        <!-- Donor Availability Options (if donor selected) -->
+                        <div id="donor-extra-settings" style="background-color: var(--bg-main); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1rem; margin-bottom: 1.5rem;">
+                            <div style="font-size: 0.875rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.75rem;">Donor Privacy &amp; Availability Settings</div>
+                            <div class="form-row">
+                                <div class="form-group" style="margin-bottom: 0;">
+                                    <label class="form-label" for="availabilityStatus">Initial Status:</label>
+                                    <select id="availabilityStatus" class="form-select">
+                                        <option value="AVAILABLE" selected>Available to Donate</option>
+                                        <option value="UNAVAILABLE">Currently Unavailable</option>
+                                    </select>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem; padding-top: 1.5rem;">
+                                    <input type="checkbox" id="isDiscoverable" checked style="width: 18px; height: 18px; accent-color: var(--primary);" />
+                                    <label for="isDiscoverable" style="font-size: 0.8125rem; color: var(--text-primary); cursor: pointer;">
+                                        Make profile discoverable in public search
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                            Complete Registration
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            AuthApp.initRegister();
+        });
+    </script>
+</body>
+</html>
+
